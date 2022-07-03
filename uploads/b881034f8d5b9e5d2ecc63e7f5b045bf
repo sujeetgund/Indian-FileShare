@@ -1,0 +1,19 @@
+const encodedParams = new URLSearchParams();
+encodedParams.append("url", "https://google.com/");
+
+const url = 'https://url-shortener-service.p.rapidapi.com/shorten';
+
+const options = {
+  method: 'POST',
+  headers: {
+    'content-type': 'application/x-www-form-urlencoded',
+    'X-RapidAPI-Key': '61d644621amshca3ce7bc3758e05p1292ccjsn371306e90ffb',
+    'X-RapidAPI-Host': 'url-shortener-service.p.rapidapi.com'
+  },
+  body: encodedParams
+};
+
+fetch(url, options)
+	.then(res => res.json())
+	.then(json => console.log(json))
+	.catch(err => console.error('error:' + err));

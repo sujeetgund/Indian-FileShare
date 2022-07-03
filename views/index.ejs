@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="/views/favicon.png" type="image/x-icon">
+    <title>Upload File - fileShare API</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            width: 100%;
+            min-height: 100vh;
+            background: #4F6072;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            user-select: none;
+        }
+
+        .file__upload {
+            width: 400px;
+            height: 445px;
+            margin: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+        }
+
+        .file__upload .header {
+            width: 100%;
+            height: 145px;
+            background: #4db6ac;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 5px 5px 0 0;
+        }
+
+        .file__upload .header p {
+            color: #FFF;
+        }
+
+        .file__upload .header p i.fa {
+            margin-right: 10px;
+        }
+
+        .file__upload .header p span {
+            font-size: 2rem;
+            font-weight: 100;
+        }
+
+        .file__upload .header p span span {
+            font-weight: 600;
+        }
+
+        .file__upload .body {
+            background: #FFF;
+            width: 100%;
+            height: calc(100% - 145px);
+            border-radius: 0 0 5px 5px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        .file__upload .body input[type="file"] {
+            display: none;
+        }
+
+        .file__upload .body input[type="password"] {
+            width: 100%;
+            height: 30px;
+            font-size: small;
+            border: 1px solid #4db6ac;
+            border-radius: 5px;
+            padding: 0 20px;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            color: #4db6ac;
+            font-weight: 300;
+        }
+
+        .file__upload .body input[type="password"]:focus {
+            outline: none;
+            border: 1px solid #4db6ac;
+            box-shadow: 0 0 5px rgba(0, 0, 0, .3);
+        }
+
+        label[for="password"] {
+            display: block;
+            margin-top: 30px;
+            font-size: 1rem;
+            font-weight: 300;
+            cursor: auto;
+        }
+
+        label[for="upload"] {
+            cursor: pointer;
+        }
+
+        .file__upload .body i.fa {
+            color: #d3d3d3;
+            margin-bottom: 20px;
+        }
+
+        .file__upload .body p strong {
+            color: #4db6ac;
+        }
+
+        .file__upload .body p span {
+            color: #4db6ac;
+            text-decoration: underline;
+        }
+
+        button {
+            background: #4db6ac;
+            color: #FFF;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            width: 50%;
+            cursor: pointer;
+        }
+
+        .shared {
+            background: #4db6ac;
+            color: rgb(0, 0, 0);
+            border: none;
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            width: 100%;
+            cursor: pointer;
+            overflow: visible;
+        }
+
+        .optional {
+            font-size: x-small;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="file__upload">
+        <div class="header">
+            <p><i class="fa fa-cloud-upload fa-2x"></i><span><span>fileShare</span>API</span></p>
+        </div>
+        <form action="/upload" method="post" class="body" enctype="multipart/form-data">
+            <label for="upload">
+                <input type="file" name="file" id="upload" required>
+                <p>
+                    <i class="fa fa-cloud-upload"></i>
+                    <strong>Drag and drop</strong> files here<br>
+                    or <span>browse</span> to begin the upload
+                </p>
+            </label>
+            <label for="password">
+                <p>
+                    <i class="fa fa-lock fa-x"></i>
+                    <b>Password</b>
+                    <span>to access</span>
+                    <i class="optional">(optional)</i>
+                </p>
+                <input type="password" name="password" id="password">
+            </label>
+            <button type="submit">Share</button>
+        </form>
+
+        <% if(locals.fileLink !=null) { %>
+            <div class="shared">
+                <i class="fa fa-link"></i>
+                Your File Link: <a style="font-size:15px;" href="<%= locals.fileLink %>">
+                    <%= locals.fileLink %>
+                </a>
+            </div>
+            <% } %>
+
+    </div>
+</body>
+
+</html>
