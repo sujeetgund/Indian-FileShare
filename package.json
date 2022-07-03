@@ -4,7 +4,8 @@
   "description": "This API allows to upload files and stores on server with proper authentication. You can access the uploaded file anytime you wants.",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "start": "node server.js"
   },
   "author": "sujeet gund",
   "license": "MIT",
